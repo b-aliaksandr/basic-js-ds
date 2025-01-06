@@ -46,9 +46,17 @@ class BinarySearchTree {
     this.head = this.#root;
   }
 
-  has(/* data */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  has(data) {
+    if (this.head === null) return false;
+    if (this.head.data === data) {
+      this.head = this.#root;
+      return true;
+    }
+    
+    const direction = this.#selectDirection(data);
+
+    this.head = this.head[direction];
+    return this.has(data);
   }
 
   find(data) {

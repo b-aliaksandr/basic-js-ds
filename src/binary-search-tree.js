@@ -91,8 +91,15 @@ class BinarySearchTree {
   }
 
   max() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.head === null) return null;
+    if (this.head.right === null) {
+      const maxValue = this.head.data;
+      this.head = this.#root;
+      return maxValue;
+    } else {
+      this.head = this.head.right;
+      return this.max();
+    }
   }
 }
 

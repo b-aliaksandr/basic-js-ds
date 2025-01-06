@@ -47,16 +47,18 @@ class BinarySearchTree {
   }
 
   has(data) {
-    if (this.head === null) return false;
-    if (this.head.data === data) {
-      this.head = this.#root;
-      return true;
-    }
-    
-    const direction = this.#selectDirection(data);
+    const search = (node) => {
+      if (node === null) return false;
+      if (node.data === data) return true;
 
-    this.head = this.head[direction];
-    return this.has(data);
+      const direction = node.data > data
+        ? this.#direction.left
+        : this.#direction.right;
+
+      return search(node[direction]);
+    };
+
+    return search(this.#root);
   }
 
   find(data) {
